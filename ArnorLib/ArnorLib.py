@@ -6,7 +6,6 @@ __author__ = "Arnór Friðriksson"
 
 from typing import Any, Dict, List
 
-
 # telja öll indexes í lista
 def CountList(L: list) -> Dict[Any, int]:
     """
@@ -49,3 +48,21 @@ def WeightedMiddle(L: list) -> List[Any]:
             tip += L[tipPos][1]
             tipPos += 1
     return L[tailPos][0]
+
+class Counter:
+    def __init__(self) -> None:
+        self.things = {}
+    
+    def add(self, thing):
+        if thing in self.things:
+            self.things[thing] += 1
+        else:
+            self.things[thing] = 0
+    
+    def addMany(self, things):
+        for thing in things:
+            self.add(thing)
+    
+    def __str__(self):
+        return str(self.things)
+

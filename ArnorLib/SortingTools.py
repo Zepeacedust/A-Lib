@@ -43,6 +43,16 @@ def merge(a: List, b: List, key=int) -> List:
 
 
 def mergeLists(a: List[List], key=int) -> List[List]:
+    """
+    Merge lists, halving the number of lists.
+
+    Args:
+        a (List[List]): List of lists to be merged.
+        key ([type], optional): key to merge by. Defaults to int.
+
+    Returns:
+        List[List]: merged list
+    """
     # ensure that the number of lists is even
     if len(a) % 2 == 1:
         a.append(merge(a.pop(), a.pop(), key=key))

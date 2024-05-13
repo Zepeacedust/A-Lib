@@ -33,12 +33,17 @@ class Graph:
         return self.Nodes[index]
 
     def FindRoute(self, start: PathfindingNode, end: PathfindingNode):
+        
+        #initialize nodes
         for node in self.Nodes:
             node.Distance = -1
             node.Root = None
         start.Distance = 0
+
+        #initialize Priority Queue
         availableTiles = PrioQueue(key=lambda x: x.Distance)
         availableTiles.add(start)
+
         while not end.visited and not availableTiles.isEmpty:
             operatingNode = availableTiles.pop()
             operatingNode.visited = True
@@ -48,6 +53,8 @@ class Graph:
                     newNode.Distance = operatingNode.Distance + connection.Weight
                     newNode.Root = operatingNode
                     availableTiles.add(newNode)
+        
+        # reconstruct path from roots
         path = [end]
         while path[-1].Root != None:
             path.append(path[-1].Root)
